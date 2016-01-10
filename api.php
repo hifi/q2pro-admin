@@ -143,6 +143,7 @@ class API
 
     public function logView($limit, $offset)
     {
+        $this->_requireUser(true);
         return array(
             array(
                 'value'     => 'Log line.',
