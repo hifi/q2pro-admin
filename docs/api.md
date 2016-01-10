@@ -18,6 +18,8 @@ Responses always have the base structure of:
     
 Where `data` contains the full response object from the backend. All error messages by definition are user friendly and can be displayed as received.
 
+Datetime format is `YYYY-MM-DD HH:MM:SS` and all times are in UTC.
+
 ## Session
 
 User session management.
@@ -229,10 +231,7 @@ Response:
                 reason: string,
                 expires: datetime/null,
                 added: datetime,
-                user: {
-                    id: int,
-                    username: string
-                }
+                username: string
             },
             ...
         ]
