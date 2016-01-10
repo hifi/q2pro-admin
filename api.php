@@ -209,9 +209,12 @@ try {
         'data'  => NULL,
     )) . "\n";
 } catch (Exception $e) {
-    echo json_encode(array(
-        'error' => 'Unhandled exception from API. Error message suppressed.',
-        'data'  => NULL,
-    )) . "\n";
-    throw $e;
+    if (php_sapi_name() == 'cli') {
+        throw $e;
+    } else {
+        echo json_encode(array(
+            'error' => 'Unhandled exception from API. Error message suppressed.',
+            'data'  => NULL,
+        )) . "\n";
+    }
 }
