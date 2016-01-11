@@ -1,0 +1,45 @@
+{
+  "name": "q2pro-admin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.php",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "karma start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hifi/q2pro-admin.git"
+  },
+  "keywords": [
+    "q2pro"
+  ],
+  "author": "Risto \"Dilaz\" Viitanen",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "^1.4.8",
+    "angular-animate": "^1.4.8",
+    "angular-ui-router": "^0.2.15",
+    "bootstrap-sass": "^3.3.6",
+    "gulp": "^3.9.0",
+    "gulp-angular-templatecache": "^1.8.0",
+    "gulp-browserify": "^0.5.1",
+    "gulp-jshint": "^2.0.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-sass": "^2.1.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "jasmine-core": "^2.4.1",
+    "jshint": "^2.8.0",
+    "jshint-stylish": "^2.1.0",
+    "karma": "^0.13.19",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-jasmine": "^0.3.6",
+    "yargs": "^3.31.0"
+  },
+  "bugs": {
+    "url": "https://github.com/hifi/q2pro-admin/issues"
+  },
+  "homepage": "https://github.com/hifi/q2pro-admin#readme"
+}
