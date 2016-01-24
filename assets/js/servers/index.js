@@ -1,7 +1,6 @@
 'use strict';
 
 var angular = require('angular');
-
 var app = angular.module('app');
 
-app.controller('MainController', require('./Main_controller'));
+app.controller('ServerController', require('./Server_controller'));

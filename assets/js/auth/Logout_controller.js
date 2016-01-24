@@ -1,6 +1,8 @@
+'use strict';
+
 module.exports = ['AuthService', '$state', function(AuthService, $state) {
 	AuthService.logout()
-	.then(function() {
+	.finally(function() {
 		$state.go('login');
 	});
 }];

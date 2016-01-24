@@ -1,4 +1,6 @@
-module.exports = ['$rootScope', function($rootScope) {
+'use strict';
+
+module.exports = ['$rootScope', 'AuthService', function($rootScope, AuthService) {
 	$rootScope.baseTitle = $rootScope.title;
-	console.log('foo');
+	$rootScope.user = AuthService.getUser();
 }];

@@ -1,52 +1,80 @@
+'use strict';
+
 var angular = require('angular');
 var app = angular.module('app');
 
-
-app.config(['$httpProvider', function($httpProvider) {
-	$httpProvider.interceptors.push(['$q', function($q) {
-		return {
-			request: function(config) {
-				config.headers.Accept = 'application/json';
-				return config;
-			},
-			response: function(resp) {
-				if (resp.data.error) {
-					return $q.reject(resp.data.error);
-				}
-
-				return $q.resolve(resp.data);
-			},
-		};
-	}]);
+/**
+ * Sets some variables to false
+ * @param  $rootScope AngularJS $rootScope
+ */
+app.run(['$rootScope', function($rootScope) {
+	// Disable remodal windows
+	$rootScope.loader = false;
 }]);
 
-app.config(['$httpProvider', '$rootScope', function($httpProvider, $rootScope) {
+// Create a factory for interceptor
+app.factory('loaderHttpInterceptor',
+['$rootScope', '$q', function($rootScope, $q) {
 	var self = this;
-	self.requests = 0;
+	self.requestCount = 0;
 
-	$httpProvider.interceptors.push(['$q', function($q) {
-		return {
-			request: function(config) {
-				self.requests++;
-				$rootScope.loader = true;
-				return config;
-			},
-			response: function(resp) {
-				self.requests--;
-				if (!request) {
-					$rootScope.loader = false;
+	return {
+		request: function(config) {
+			self.requestCount++;
+			$rootScope.loader = true;
+			return config;
+		},
+		response: function(resp) {
+			self.requestCount--;
+			if (self.requestCount === 0) {
+				$rootScope.loader = false;
+			}
+
+			return resp;
+		},
+		responseError: function(resp) {
+			self.requestCount--;
+			if (self.requestCount === 0) {
+				$rootScope.loader = false;
+			}
+
+			return $q.reject(resp);
+		},
+	};
+}]);
+
+app.factory('ajaxHttpInterceptor',
+['$q', '$rootScope', function($q, $rootScope) {
+	return {
+		request: function(config) {
+			if (angular.isObject(config.data)) {
+				config.headers.Accept = 'application/json';
+				config.headers['Content-Type'] = 'application/json';
+				config.headers['X-Requested-With'] = 'XMLHttpRequest';
+				if ($rootScope.user) {
+					config.data.sessionId = $rootScope.user.sessionId;
 				}
+			}
 
-				return resp;
-			},
-			responseError: function(resp) {
-				self.requests--;
-				if (!request) {
-					$rootScope.loader = false;
-				}
+			return config;
+		},
+		response: function(resp) {
+			if (!resp.data || !angular.isObject(resp.data)) {
+				return $q.resolve(resp);
+			}
 
-				return resp;
-			},
-		};
-	}]);
+			// Reject all responses with 'error' field set
+			if (resp.data.error) {
+				return $q.reject(resp.data.error);
+			}
+
+			return $q.resolve(resp.data.data);
+		},
+	};
+}]);
+
+
+app.config(['$httpProvider', function($httpProvider) {
+	$httpProvider.interceptors.push('ajaxHttpInterceptor');
+	$httpProvider.interceptors.push('loaderHttpInterceptor');
 }]);

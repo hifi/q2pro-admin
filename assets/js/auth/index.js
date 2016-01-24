@@ -1,6 +1,8 @@
+'use strict';
+
 var angular = require('angular');
 
 
 var app = angular.module('app');
 
-app.controller('AuthController', require('./Auth_controller'));
+app.controller('LoginController', require('./Login_controller'));

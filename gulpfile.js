@@ -1,3 +1,5 @@
+'use strict';
+
 var gulp = require('gulp');
 var browserify = require('gulp-browserify');
 var sass = require('gulp-sass');
@@ -44,7 +46,6 @@ gulp.task('lint', function() {
 	]).pipe(jshint())
 	.pipe(jshint.reporter('jshint-stylish'))
 	.on('error', function() {
-		beep();
 	});
 });
 

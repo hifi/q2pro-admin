@@ -1,5 +1,8 @@
+'use strict';
+
 var angular = require('angular');
 var app = angular.module('app');
+
 app.config(['$stateProvider', '$urlRouterProvider',
 function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise('/login');
@@ -24,6 +27,13 @@ function($stateProvider, $urlRouterProvider) {
 		views: {
 			header: { templateUrl: 'partial/header.html', },
 			main: { templateUrl: 'servers/index.html', }
+		},
+	})
+	.state('server', {
+		url: '/server/:id',
+		views: {
+			header: { templateUrl: 'partial/header.html', },
+			main: { templateUrl: 'servers/single.html', }
 		},
 	})
 	.state('bans', {
@@ -52,7 +62,7 @@ function($stateProvider, $urlRouterProvider) {
 		url: '/logs',
 		views: {
 			header: { templateUrl: 'partial/header.html', },
-			main: { templateUrl: 'users/index.html', }
+			main: { templateUrl: 'logs/index.html', }
 		},
 	});
 }]);

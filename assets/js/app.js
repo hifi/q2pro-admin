@@ -1,8 +1,10 @@
+'use strict';
+
 var angular = require('angular');
 require('angular-ui-router');
 require('angular-animate');
 
-var app = angular.module('app', [
+angular.module('app', [
 	'ui.router',
 	require('angular-animate'),
 ]);
@@ -13,7 +15,14 @@ require('./users/User_service');
 require('./bans/Ban_service');
 require('./servers/Server_service');
 
+require('./interceptors');
 require('./filter');
-require('./main');
+require('./directives');
 require('./routes');
+
+require('./main');
 require('./auth');
+require('./servers');
+require('./bans');
+require('./users');
+require('./logs');

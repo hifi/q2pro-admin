@@ -1,0 +1,31 @@
+.servers {
+	table {
+		width: 100%;
+
+		thead {
+			font-weight: 700;
+			td {
+				height: 30px;
+				line-height: 30px;
+			}
+		}
+		tbody {
+			tr {
+				cursor: pointer;
+			}
+
+			td {
+				height: 25px;
+				line-height: 25px;
+				border: 1px solid black;
+				border-collapse: collapse;
+				text-indent: 5px;
+
+				&.actions {
+					text-indent: 0;
+					text-align: center;
+				}
+			}
+		}
+	}
+}

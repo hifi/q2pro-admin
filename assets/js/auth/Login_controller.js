@@ -1,12 +1,23 @@
+'use strict';
 
 module.exports = [
-'AuthService', '$http', '$scope',
-function(AuthService, $http, $scope) {
+'AuthService', '$http', '$scope', '$state',
+function(AuthService, $http, $scope, $state) {
 	$scope.username = '';
 	$scope.password = '';
 
-	$scope.auth = function() {
-		Loader.start();
-		AuthService.auth();
+	if (AuthService.getUser()) {
+		$state.go('servers');
+	}
+
+	$scope.login = function() {
+		$scope.error = '';
+		AuthService.login($scope.username, $scope.password)
+		.then(function() {
+			$state.go('servers');
+		})
+		.catch(function(err) {
+			$scope.error = err;
+		});
 	};
 }];

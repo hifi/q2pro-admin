@@ -1,6 +1,7 @@
 @import "../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 @import "_login.scss";
 @import "_loader.scss";
+@import "_servers.scss";
 
 html, body {
 	height: 100%;
@@ -13,5 +14,11 @@ body {
 		.btn {
 
 		}
+	}
+}
+
+.main {
+	.container {
+		margin-top: 20px;
 	}
 }
