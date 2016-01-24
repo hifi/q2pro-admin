@@ -8,7 +8,7 @@ function($stateProvider, $urlRouterProvider) {
 	.state('login', {
 		url: '/login',
 		views: {
-			header: { templateUrl: 'partial/header.html', },
+			header: { template: '', },
 			main: { templateUrl: 'auth/login.html', }
 		},
 	})
@@ -19,11 +19,40 @@ function($stateProvider, $urlRouterProvider) {
 			main: { template: '', controller: require('./auth/Logout_controller'), }
 		},
 	})
-	.state('info', {
-		url: '/info',
+	.state('servers', {
+		url: '/servers',
 		views: {
-			header: { template: '', },
+			header: { templateUrl: 'partial/header.html', },
 			main: { templateUrl: 'servers/index.html', }
+		},
+	})
+	.state('bans', {
+		url: '/bans',
+		views: {
+			header: { templateUrl: 'partial/header.html', },
+			main: { templateUrl: 'bans/index.html', }
+		},
+	})
+	.state('users', {
+		url: '/users',
+		views: {
+			header: { templateUrl: 'partial/header.html', },
+			main: { templateUrl: 'users/index.html', }
+		},
+		superAdminOnly: true,
+	})
+	.state('passwordReset', {
+		url: '/pwreset',
+		views: {
+			header: { templateUrl: 'partial/header.html', },
+			main: { templateUrl: 'users/pwreset.html', }
+		},
+	})
+	.state('logs', {
+		url: '/logs',
+		views: {
+			header: { templateUrl: 'partial/header.html', },
+			main: { templateUrl: 'users/index.html', }
 		},
 	});
 }]);

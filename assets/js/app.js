@@ -16,3 +16,4 @@ require('./servers/Server_service');
 require('./filter');
 require('./main');
 require('./routes');
+require('./auth');

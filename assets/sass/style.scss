@@ -1,4 +1,17 @@
 @import "../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
-body {
+@import "_login.scss";
+@import "_loader.scss";
 
+html, body {
+	height: 100%;
+}
+
+body {
+	padding: 40px 0 40px;
+
+	&.loading {
+		.btn {
+
+		}
+	}
 }

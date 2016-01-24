@@ -19,3 +19,34 @@ app.config(['$httpProvider', function($httpProvider) {
 		};
 	}]);
 }]);
+
+app.config(['$httpProvider', '$rootScope', function($httpProvider, $rootScope) {
+	var self = this;
+	self.requests = 0;
+
+	$httpProvider.interceptors.push(['$q', function($q) {
+		return {
+			request: function(config) {
+				self.requests++;
+				$rootScope.loader = true;
+				return config;
+			},
+			response: function(resp) {
+				self.requests--;
+				if (!request) {
+					$rootScope.loader = false;
+				}
+
+				return resp;
+			},
+			responseError: function(resp) {
+				self.requests--;
+				if (!request) {
+					$rootScope.loader = false;
+				}
+
+				return resp;
+			},
+		};
+	}]);
+}]);
