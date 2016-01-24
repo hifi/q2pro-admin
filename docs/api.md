@@ -15,7 +15,7 @@ Responses always have the base structure of:
         error: string/null,
         data: object/null
     }
-    
+
 Where `data` contains the full response object from the backend. All error messages by definition are user friendly and can be displayed as received.
 
 Datetime format is `YYYY-MM-DD HH:MM:SS` and all times are in UTC.
@@ -33,7 +33,7 @@ Request:
         username: string,
         password: string,
     }
-    
+
 Response:
 
     {
@@ -43,7 +43,7 @@ Response:
             superUser: bool
         }
     }
-    
+
 ### Logout
 
 Request:
@@ -51,7 +51,7 @@ Request:
     {
         method: 'logout'
     }
-    
+
 Response is empty.
 
 ## User
@@ -117,7 +117,7 @@ Request:
     }
 
 Response is empty.
-    
+
 ## Server
 
 Manages server list and server configurations like rcon password. Server host is in format `host/ip:port`, for example `127.0.0.1:29710`.
@@ -164,7 +164,7 @@ Response is empty.
 Request:
 
     {
-        method: 'serverAdd',
+        method: 'serverEdit',
         sessionId: string,
         id: int,
         name: string,
@@ -185,7 +185,7 @@ Request:
     }
 
 Response is empty.
-    
+
 ## Rcon
 
 Raw remote rcon. Response has the reply from the command or null with error string set in case of error.
